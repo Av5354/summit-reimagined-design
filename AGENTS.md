@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep the Insurance Summit as a single immersive home-page experience with source-faithful content; this matches the original event site's information architecture.

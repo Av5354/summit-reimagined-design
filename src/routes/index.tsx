@@ -76,6 +76,9 @@ function Index() {
           gsap.from(item, { y: 48, opacity: 0, duration: 0.85, ease: "power3.out", scrollTrigger: { trigger: item, start: "top 88%" } });
         });
         gsap.to("[data-parallax]", { yPercent: 12, ease: "none", scrollTrigger: { trigger: "#home", start: "top top", end: "bottom top", scrub: true } });
+        gsap.utils.toArray<HTMLElement>("[data-drift]").forEach((item, index) => {
+          gsap.to(item, { yPercent: index % 2 ? -16 : 18, rotate: index % 2 ? 3 : -3, ease: "none", scrollTrigger: { trigger: item, start: "top bottom", end: "bottom top", scrub: 1.2 } });
+        });
       }, root);
       cleanup = () => ctx.revert();
     });
@@ -86,7 +89,7 @@ function Index() {
 
   return (
     <div ref={root} className="overflow-x-hidden bg-background text-foreground">
-      <nav className="fixed inset-x-0 top-0 z-50 border-b border-border/50 bg-hero/80 backdrop-blur-xl">
+      <nav className="editorial-nav fixed inset-x-0 top-0 z-50 border-b border-hero-foreground/10 bg-hero/75 backdrop-blur-xl">
         <div className="mx-auto grid h-20 max-w-[1440px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 lg:px-10">
           <a href="#home" className="min-w-0" aria-label="Insurance Summit home">
             <img src={logo.url} alt="Insurance Summit & Awards, 12th Edition" className="h-12 w-auto max-w-[240px] object-contain" />
@@ -108,15 +111,19 @@ function Index() {
         </div>}
       </nav>
 
-      <header id="home" className="relative min-h-[94svh] overflow-hidden bg-hero pt-20 text-hero-foreground">
-        <img data-parallax src={hero.url} alt="Insurance Summit audience and stage" className="absolute inset-0 h-[112%] w-full object-cover opacity-45" />
+      <header id="home" className="editorial-hero relative min-h-[94svh] overflow-hidden bg-hero pt-20 text-hero-foreground">
+        <div className="hero-image-portal absolute inset-y-0 right-0 w-full lg:w-[68%]">
+          <img data-parallax src={hero.url} alt="Insurance Summit audience and stage" className="h-[112%] w-full object-cover opacity-75" />
+        </div>
         <div className="absolute inset-0 bg-hero-overlay" />
+        <div className="hero-arc hero-arc-one" data-drift />
+        <div className="hero-arc hero-arc-two" data-drift />
         <div className="relative mx-auto flex min-h-[calc(94svh-5rem)] max-w-[1440px] flex-col justify-end px-5 pb-9 lg:px-10 lg:pb-14">
           <div className="mb-7 h-px w-full bg-hero-foreground/20" data-hero-reveal />
           <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-end">
             <div className="min-w-0">
               <p data-hero-reveal className="mb-5 text-xs font-bold uppercase text-accent">12th Edition · ET Now Insurance Summit & Awards</p>
-              <h1 data-hero-reveal className="max-w-[12ch] text-5xl font-semibold leading-[0.95] uppercase text-balance sm:text-7xl lg:text-[7.5rem]">Prevent <span className="text-accent">|</span> Protect</h1>
+              <h1 data-hero-reveal className="hero-title max-w-[11ch] text-5xl font-semibold leading-[0.88] uppercase text-balance sm:text-7xl lg:text-[7.5rem]"><span>Prevent</span><span><i>|</i> Protect</span></h1>
               <p data-hero-reveal className="mt-5 text-xl font-medium text-hero-foreground/75 sm:text-2xl">The New Insurance Directive</p>
             </div>
             <div data-hero-reveal className="border-l border-accent pl-6">
@@ -130,75 +137,78 @@ function Index() {
       </header>
 
       <main>
-        <section id="about" className="py-24 lg:py-36">
+        <section id="about" className="section-slope section-slope-light relative py-28 lg:py-40">
           <div className="mx-auto grid max-w-[1440px] gap-14 px-5 lg:grid-cols-[0.85fr_1.15fr] lg:px-10">
-            <div data-reveal className="relative overflow-hidden">
+            <div data-reveal className="architectural-image relative overflow-hidden">
               <img src={overview.url} alt="Insurance industry overview" className="aspect-[4/5] h-full w-full object-cover" />
+              <div className="image-curve" data-drift />
               <div className="absolute bottom-0 right-0 bg-primary px-7 py-6 text-primary-foreground"><span className="block text-5xl font-semibold">12</span><span className="text-xs font-bold uppercase">Editions</span></div>
             </div>
             <div data-reveal className="flex flex-col justify-center">
               <p className="section-kicker">About the summit</p>
               <h2 className="section-title">A Prestigious Gathering for Innovators in Insurance</h2>
               <p className="mt-8 max-w-[66ch] text-base leading-8 text-muted-foreground">The Indian insurance sector stands at the threshold of a transformative decade. As the nation sets its sights on becoming a $10 trillion economy by 2047, insurance is rapidly evolving from being a reactive risk cover to becoming a proactive enabler of national resilience, financial empowerment, and inclusive growth. In this context, ET Edge is proud to present the 12th Edition of the ET Now Insurance Summit and Awards, a premier platform that brings together the brightest minds in insurance, technology, policy, and finance to shape the future of the industry.</p>
-              <div className="mt-12 grid grid-cols-2 border-y border-border sm:grid-cols-4">
-                {[["10", "Editions"], ["1470+", "Decision Makers"], ["294+", "Speakers"], ["1568+", "Delegates"]].map(([n, label]) => <div key={label} className="border-border px-3 py-7 sm:border-r"><strong className="block text-3xl text-primary">{n}</strong><span className="text-[11px] font-bold uppercase text-muted-foreground">{label}</span></div>)}
+              <div className="stat-ribbon mt-12 grid grid-cols-2 sm:grid-cols-4">
+                {[["10", "Editions"], ["1470+", "Decision Makers"], ["294+", "Speakers"], ["1568+", "Delegates"]].map(([n, label]) => <div key={label} className="px-3 py-7"><strong className="block text-3xl text-primary">{n}</strong><span className="text-[11px] font-bold uppercase text-muted-foreground">{label}</span></div>)}
               </div>
             </div>
           </div>
         </section>
 
-        <section className="bg-secondary py-24 lg:py-32">
+        <section className="section-slope section-slope-dark relative bg-hero py-28 text-hero-foreground lg:py-40">
+          <div className="section-ribbon section-ribbon-left" data-drift />
           <div className="mx-auto max-w-[1440px] px-5 lg:px-10">
-            <div data-reveal className="grid gap-7 border-b border-border pb-12 lg:grid-cols-[0.7fr_1.3fr]">
+            <div data-reveal className="grid gap-7 border-b border-hero-foreground/15 pb-12 lg:grid-cols-[0.7fr_1.3fr]">
               <p className="section-kicker">The conversation</p>
               <h2 className="section-title max-w-[18ch]">Key discussion points</h2>
             </div>
-            <div className="divide-y divide-border">
-              {topics.map((topic, index) => <article data-reveal key={topic} className="group grid gap-5 py-7 sm:grid-cols-[80px_1fr_auto] sm:items-center lg:py-9"><span className="text-sm font-bold text-accent">0{index + 1}</span><h3 className="max-w-[46ch] text-xl font-medium leading-snug sm:text-2xl">{topic}</h3><ArrowRight className="hidden text-primary transition-transform group-hover:translate-x-2 sm:block" /></article>)}
+            <div className="topic-field mt-4 grid gap-3 lg:grid-cols-2">
+              {topics.map((topic, index) => <article data-reveal key={topic} className="topic-panel group grid grid-cols-[48px_1fr_auto] items-center gap-4 px-5 py-7"><span className="text-sm font-bold text-accent">0{index + 1}</span><h3 className="max-w-[46ch] text-lg font-medium leading-snug sm:text-xl">{topic}</h3><ArrowRight className="hidden text-accent transition-transform group-hover:translate-x-2 sm:block" /></article>)}
             </div>
           </div>
         </section>
 
-        <section id="speakers" className="bg-hero py-24 text-hero-foreground lg:py-32">
+        <section id="speakers" className="section-slope section-slope-light relative py-28 lg:py-40">
           <div className="mx-auto max-w-[1440px] px-5 lg:px-10">
             <div data-reveal className="mb-14 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
               <div><p className="section-kicker">Leadership voices</p><h2 className="section-title">Speakers</h2></div>
-              <p className="max-w-md text-sm leading-7 text-hero-foreground/60">The brightest minds in insurance, technology, policy, and finance.</p>
+               <p className="max-w-md text-sm leading-7 text-muted-foreground">The brightest minds in insurance, technology, policy, and finance.</p>
             </div>
-            <div className="grid gap-px bg-hero-foreground/10 sm:grid-cols-2 lg:grid-cols-4">
-              {speakers.map((speaker) => <article data-reveal key={speaker.name} className="speaker group relative overflow-hidden bg-hero"><div className="aspect-[4/5] overflow-hidden"><img src={speaker.image} alt={speaker.name} className="h-full w-full object-cover object-top grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0" /></div><div className="absolute inset-x-0 bottom-0 bg-speaker-overlay p-6 pt-20"><h3 className="text-xl font-semibold">{speaker.name}</h3><p className="mt-2 text-sm text-hero-foreground/70">{speaker.role}<br />{speaker.company}</p></div></article>)}
+            <div className="speaker-run grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {speakers.map((speaker, index) => <article data-reveal key={speaker.name} className={`speaker speaker-cut-${index + 1} group relative overflow-hidden bg-hero text-hero-foreground`}><div className="aspect-[4/5] overflow-hidden"><img src={speaker.image} alt={speaker.name} className="h-full w-full object-cover object-top grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0" /></div><div className="absolute inset-x-0 bottom-0 bg-speaker-overlay p-6 pt-20"><h3 className="text-xl font-semibold">{speaker.name}</h3><p className="mt-2 text-sm text-hero-foreground/70">{speaker.role}<br />{speaker.company}</p></div></article>)}
             </div>
-            <div data-reveal className="mt-14 grid gap-8 border-t border-hero-foreground/15 pt-12 lg:grid-cols-[1fr_2fr] lg:items-center">
-              <div className="relative mx-auto max-w-[260px] overflow-hidden bg-hero-foreground/5"><img src={chief.url} alt="Satyajit Tripathy" className="w-full object-cover" /></div>
-              <div><p className="section-kicker">Chief Guest</p><h3 className="text-4xl font-semibold sm:text-5xl">Satyajit Tripathy</h3><p className="mt-4 text-lg text-hero-foreground/65">Member Distribuition<br />Insurance Regulatory and Development Authority of India</p></div>
+            <div data-reveal className="chief-guest mt-16 grid gap-8 pt-12 lg:grid-cols-[1fr_2fr] lg:items-center">
+              <div className="chief-portrait relative mx-auto max-w-[260px] overflow-hidden bg-secondary"><img src={chief.url} alt="Satyajit Tripathy" className="w-full object-cover" /></div>
+              <div><p className="section-kicker">Chief Guest</p><h3 className="text-4xl font-semibold sm:text-5xl">Satyajit Tripathy</h3><p className="mt-4 text-lg text-muted-foreground">Member Distribuition<br />Insurance Regulatory and Development Authority of India</p></div>
             </div>
           </div>
         </section>
 
-        <section id="agenda" className="py-24 lg:py-32">
+        <section id="agenda" className="section-slope section-slope-dark relative bg-hero py-28 text-hero-foreground lg:py-40">
+          <div className="section-ribbon section-ribbon-right" data-drift />
           <div className="mx-auto max-w-[1440px] px-5 lg:px-10">
             <div data-reveal className="mb-14"><p className="section-kicker">One defining day</p><h2 className="section-title">Agenda</h2></div>
-            <div className="border-t border-foreground">
-              {agenda.map(([time, title]) => <div data-reveal key={title} className="agenda-row grid gap-3 border-b border-border py-6 sm:grid-cols-[180px_1fr_auto] sm:items-center"><time className="text-sm font-bold text-primary">{time}</time><h3 className="max-w-[62ch] text-lg font-medium sm:text-xl">{title}</h3><span className="hidden h-2 w-2 bg-accent sm:block" /></div>)}
+            <div className="agenda-list">
+              {agenda.map(([time, title]) => <div data-reveal key={title} className="agenda-row grid gap-3 py-6 sm:grid-cols-[180px_1fr_auto] sm:items-center"><time className="text-sm font-bold text-accent">{time}</time><h3 className="max-w-[62ch] text-lg font-medium sm:text-xl">{title}</h3><span className="hidden h-2 w-2 rotate-45 bg-accent sm:block" /></div>)}
             </div>
           </div>
         </section>
 
-        <section id="partners" className="border-y border-border bg-secondary py-20">
+        <section id="partners" className="section-slope section-slope-light relative py-28">
           <div className="mx-auto max-w-[1440px] px-5 lg:px-10">
             <div data-reveal className="mb-12"><p className="section-kicker">Industry support</p><h2 className="section-title">Partners</h2></div>
-            <div className="grid gap-px bg-border md:grid-cols-3">
-              {[["Presenting Partner", axisMax.url, "Axis Max Life Insurance"], ["Co-powered by", hdfc.url, "HDFC Life"], ["Knowledge Partner", pwc.url, "PwC"]].map(([label, src, alt]) => <div key={label} className="flex min-h-52 flex-col items-center justify-center bg-background p-8"><p className="mb-8 text-[10px] font-bold uppercase text-muted-foreground">{label}</p><img src={src} alt={alt} className="h-16 max-w-[200px] object-contain" /></div>)}
+            <div className="partner-ribbon grid gap-4 md:grid-cols-3">
+              {[["Presenting Partner", axisMax.url, "Axis Max Life Insurance"], ["Co-powered by", hdfc.url, "HDFC Life"], ["Knowledge Partner", pwc.url, "PwC"]].map(([label, src, alt]) => <div key={label} className="partner-mark flex min-h-52 flex-col items-center justify-center bg-background p-8"><p className="mb-8 text-[10px] font-bold uppercase text-muted-foreground">{label}</p><img src={src} alt={alt} className="h-16 max-w-[200px] object-contain" /></div>)}
             </div>
           </div>
         </section>
 
-        <section id="glimpses" className="bg-hero py-24 text-hero-foreground lg:py-32">
+        <section id="glimpses" className="section-slope section-slope-dark relative bg-hero py-28 text-hero-foreground lg:py-40">
           <div className="mx-auto max-w-[1440px] px-5 lg:px-10">
             <div data-reveal className="mb-14"><p className="section-kicker">In the room</p><h2 className="section-title">Glimpses</h2></div>
-            <div className="grid gap-3 md:grid-cols-12">
-              <img data-reveal src={glimpse1.url} alt="Insurance Summit gathering" className="h-80 w-full object-cover md:col-span-7 md:h-[520px]" />
-              <div className="grid gap-3 md:col-span-5"><img data-reveal src={glimpse2.url} alt="Insurance Summit stage" className="h-[254px] w-full object-cover" /><img data-reveal src={glimpse3.url} alt="Insurance Summit delegates" className="h-[254px] w-full object-cover" /></div>
+            <div className="glimpse-collage grid gap-3 md:grid-cols-12">
+              <img data-reveal src={glimpse1.url} alt="Insurance Summit gathering" className="glimpse-main h-80 w-full object-cover md:col-span-7 md:h-[520px]" />
+              <div className="grid gap-3 md:col-span-5"><img data-reveal src={glimpse2.url} alt="Insurance Summit stage" className="glimpse-top h-[254px] w-full object-cover" /><img data-reveal src={glimpse3.url} alt="Insurance Summit delegates" className="glimpse-bottom h-[254px] w-full object-cover" /></div>
             </div>
           </div>
         </section>

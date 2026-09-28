@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowDown, ArrowRight, CalendarDays, MapPin, Menu, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import logo from "@/assets/logo.png.asset.json";
+import logo from "@/assets/insurance-summit-logo.png.asset.json";
 import hero from "@/assets/hero.jpg.asset.json";
 import overview from "@/assets/overview.png.asset.json";
 import chief from "@/assets/chief.png.asset.json";
@@ -89,7 +89,7 @@ function Index() {
       <nav className="fixed inset-x-0 top-0 z-50 border-b border-border/50 bg-hero/80 backdrop-blur-xl">
         <div className="mx-auto grid h-20 max-w-[1440px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 lg:px-10">
           <a href="#home" className="min-w-0" aria-label="Insurance Summit home">
-            <img src={logo.url} alt="ET Now Insurance Summit & Awards, 12th Edition" className="h-11 w-auto max-w-[190px] object-contain" />
+            <img src={logo.url} alt="Insurance Summit & Awards, 12th Edition" className="h-12 w-auto max-w-[240px] object-contain" />
           </a>
           <div className="hidden items-center gap-7 lg:flex">
             {[["About Summit", "about"], ["Agenda", "agenda"], ["Partners", "partners"], ["Speakers", "speakers"], ["Glimpses", "glimpses"]].map(([label, id]) => (

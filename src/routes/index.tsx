@@ -108,7 +108,7 @@ function Index() {
         <div className="relative mx-auto grid min-h-[573px] max-w-[1630px] items-center gap-12 border-t border-hero-foreground/25 px-5 py-14 lg:grid-cols-[1fr_0.48fr] lg:px-10">
           <div className="hero-copy">
             <p data-hero-reveal className="hero-kicker">12th Edition · ET Now Insurance Summit & Awards</p>
-            <h1 data-hero-reveal className="mt-7 text-[4.1rem] leading-[0.86] sm:text-[6.8rem] lg:text-[8.8rem]">Prevent <em>|</em><br />Protect</h1>
+            <h1 data-hero-reveal className="mt-6 text-[3.6rem] leading-[0.92] sm:text-[5.8rem] lg:text-[7.6rem]">Prevent <em>|</em><br />Protect</h1>
             <p data-hero-reveal className="mt-7 max-w-xl text-xl text-hero-foreground/80 sm:text-2xl">The New Insurance Directive</p>
             <a data-hero-reveal href="#about" className="hero-discover mt-14 inline-flex items-center gap-4 text-xs font-bold uppercase"><ArrowDown size={16} />Discover the Summit</a>
           </div>

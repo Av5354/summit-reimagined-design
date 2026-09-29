@@ -8,4 +8,4 @@
 - [x] Verify the reference-led redesign across desktop and mobile.
 - [x] Match the supplied reference's exact section order, compact proportions, serif hierarchy, skyline hero, awards feature, agenda columns, and gallery collage.
 - [x] Restore a rectangular reference-style hero, highlight full-width counters, stack speaker heading above its row, and convert the agenda to an accordion.
-- [ ] Verify the updated hero, counters, speakers, and agenda on desktop and mobile.
+- [x] Verify the updated hero, counters, speakers, and agenda on desktop and mobile.

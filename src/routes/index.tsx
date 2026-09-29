@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, CalendarDays, MapPin, Menu, Play, X } from "lucide-react";
+import { ArrowDown, ArrowRight, CalendarDays, ChevronDown, MapPin, Menu, Play, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/insurance-summit-logo.png.asset.json";
@@ -16,7 +16,7 @@ import glimpse3 from "@/assets/glimpse-3.jpg.asset.json";
 import axisMax from "@/assets/axis-max.png.asset.json";
 import hdfc from "@/assets/hdfc.png.asset.json";
 import pwc from "@/assets/pwc.png.asset.json";
-import skylineHero from "@/assets/summit-skyline-hero.jpg";
+import hero from "@/assets/hero.jpg.asset.json";
 import awardsImage from "@/assets/insurance-awards.jpg";
 
 export const Route = createFileRoute("/")({
@@ -66,6 +66,7 @@ const navItems = [["About", "about"], ["Agenda", "agenda"], ["Speakers", "speake
 function Index() {
   const root = useRef<HTMLDivElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [openAgenda, setOpenAgenda] = useState(0);
 
   useEffect(() => {
     let cleanup = () => {};
@@ -101,20 +102,22 @@ function Index() {
         {menuOpen && <div className="border-t border-hero-foreground/10 bg-hero px-5 py-6 lg:hidden"><div className="flex flex-col gap-5">{navItems.map(([label, id]) => <a key={id} href={`#${id}`} onClick={() => setMenuOpen(false)} className="text-sm font-semibold text-hero-foreground">{label}</a>)}</div></div>}
       </nav>
 
-      <header id="home" className="hero-cut relative min-h-[720px] overflow-hidden bg-hero pt-[72px] text-hero-foreground">
-        <img data-parallax src={skylineHero} width={1920} height={1088} alt="Business leader overlooking Mumbai's financial skyline" className="absolute inset-0 h-[112%] w-full object-cover object-center" />
+      <header id="home" className="hero-cut relative min-h-[645px] overflow-hidden bg-hero pt-[72px] text-hero-foreground">
+        <img data-parallax src={hero.url} alt="Insurance Summit registration gathering" className="absolute inset-0 h-[112%] w-full object-cover object-center" />
         <div className="hero-wash absolute inset-0" />
-        <div className="hero-swoop" data-float />
-        <div className="relative mx-auto flex min-h-[648px] max-w-[1380px] items-center px-5 pb-16 lg:px-10">
-          <div className="max-w-xl pt-8">
-            <p data-hero-reveal className="eyebrow text-hero-foreground/80">The Insurance Summit & Awards</p>
-            <h1 data-hero-reveal className="mt-5 text-[3.6rem] leading-[0.88] sm:text-[5.4rem] lg:text-[6.5rem]">Prevent <em>|</em><br /><span>Protect</span></h1>
-            <p data-hero-reveal className="mt-6 max-w-md text-base leading-7 text-hero-foreground/80">The New Insurance Directive</p>
-            <div data-hero-reveal className="mt-8 flex flex-wrap gap-x-8 gap-y-4 text-sm">
-              <span className="flex items-center gap-3"><CalendarDays className="text-accent" size={19} />18th December 2025</span>
-              <span className="flex items-center gap-3 border-l border-hero-foreground/30 pl-8"><MapPin className="text-accent" size={19} />Mumbai</span>
+        <div className="relative mx-auto grid min-h-[573px] max-w-[1630px] items-center gap-12 border-t border-hero-foreground/25 px-5 py-14 lg:grid-cols-[1fr_0.48fr] lg:px-10">
+          <div className="hero-copy">
+            <p data-hero-reveal className="hero-kicker">12th Edition · ET Now Insurance Summit & Awards</p>
+            <h1 data-hero-reveal className="mt-7 text-[4.1rem] leading-[0.86] sm:text-[6.8rem] lg:text-[8.8rem]">Prevent <em>|</em><br />Protect</h1>
+            <p data-hero-reveal className="mt-7 max-w-xl text-xl text-hero-foreground/80 sm:text-2xl">The New Insurance Directive</p>
+            <a data-hero-reveal href="#about" className="hero-discover mt-14 inline-flex items-center gap-4 text-xs font-bold uppercase"><ArrowDown size={16} />Discover the Summit</a>
+          </div>
+          <div data-hero-reveal className="hero-event-panel">
+            <div className="space-y-5 text-lg">
+              <span className="flex items-center gap-4"><CalendarDays className="text-accent" size={21} />18th December 2025</span>
+              <span className="flex items-center gap-4"><MapPin className="text-accent" size={21} />Mumbai</span>
             </div>
-            <a data-hero-reveal href="#glimpses" className="mt-9 inline-flex items-center gap-3 text-xs font-semibold"><span className="grid h-10 w-10 place-items-center rounded-full border border-accent text-accent"><Play size={14} fill="currentColor" /></span>Watch Highlights</a>
+            <Button asChild className="mt-9 bg-primary hover:bg-primary/90"><a href="https://et-edge.com/conferences/insurance/enquire-now/">Enquire Now <ArrowRight size={15} /></a></Button>
           </div>
         </div>
       </header>
@@ -122,10 +125,10 @@ function Index() {
       <main>
         <section id="about" className="light-band about-band relative py-24 lg:py-28">
           <div className="line-orbit line-orbit-left" />
-          <div className="mx-auto grid max-w-[1380px] gap-12 px-5 lg:grid-cols-[1.05fr_0.9fr_0.45fr] lg:items-center lg:px-10">
+          <div className="mx-auto grid max-w-[1380px] gap-12 px-5 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:px-10">
             <div data-reveal><p className="eyebrow">About the summit</p><h2 className="editorial-title mt-4">A prestigious gathering for <span>innovators in insurance</span></h2><p className="mt-7 max-w-xl text-sm leading-7 text-muted-foreground">The Indian insurance sector stands at the threshold of a transformative decade. As the nation sets its sights on becoming a $10 trillion economy by 2047, insurance is rapidly evolving from being a reactive risk cover to becoming a proactive enabler of national resilience, financial empowerment, and inclusive growth. In this context, ET Edge is proud to present the 12th Edition of the ET Now Insurance Summit and Awards, a premier platform that brings together the brightest minds in insurance, technology, policy, and finance to shape the future of the industry.</p><Button asChild variant="outline" className="mt-8 rounded-full"><a href="#agenda">Learn More <ArrowRight size={14} /></a></Button></div>
             <div data-reveal className="about-picture relative"><img src={overview.url} alt="Insurance industry overview" className="h-full w-full object-cover" /><span className="about-orange" /></div>
-            <div data-reveal className="stats-stack">
+            <div data-reveal className="stats-stack lg:col-span-2">
               {[["10", "Editions"], ["1470+", "Decision Makers"], ["294+", "Speakers"], ["1568+", "Delegates"]].map(([number, label]) => <div key={label}><strong>{number}</strong><span>{label}</span></div>)}
             </div>
           </div>
@@ -143,9 +146,9 @@ function Index() {
         </section>
 
         <section id="speakers" className="light-band speaker-band relative py-24">
-          <div className="mx-auto grid max-w-[1380px] gap-10 px-5 lg:grid-cols-[0.55fr_1.45fr] lg:items-center lg:px-10">
-            <div data-reveal><p className="eyebrow">The speakers</p><h2 className="editorial-title mt-4">Visionaries. Leaders.<br /><span>Change Makers.</span></h2><Button asChild variant="outline" className="mt-8 rounded-full"><a href="#speakers">View All Speakers <ArrowRight size={14} /></a></Button></div>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mx-auto max-w-[1380px] px-5 lg:px-10">
+            <div data-reveal className="speaker-heading"><div><p className="eyebrow">The speakers</p><h2 className="editorial-title mt-4">Visionaries. Leaders. <span>Change Makers.</span></h2></div><Button asChild variant="outline" className="rounded-full"><a href="#speakers">View All Speakers <ArrowRight size={14} /></a></Button></div>
+            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {speakers.map((speaker) => <article data-reveal key={speaker.name} className="speaker-card group"><div className="aspect-[4/4.4] overflow-hidden"><img src={speaker.image} alt={speaker.name} className="h-full w-full object-cover object-top transition duration-700 group-hover:scale-105" /></div><div className="p-4"><h3 className="text-base font-semibold">{speaker.name}</h3><p className="mt-2 text-xs leading-5 text-muted-foreground">{speaker.role}<br />{speaker.company}</p></div></article>)}
             </div>
           </div>
@@ -159,10 +162,10 @@ function Index() {
         </section>
 
         <section id="agenda" className="light-band agenda-band relative py-24">
-          <div className="mx-auto grid max-w-[1380px] gap-12 px-5 lg:grid-cols-[0.62fr_1.38fr] lg:px-10">
+          <div className="mx-auto grid max-w-[1380px] gap-12 px-5 lg:grid-cols-[0.52fr_1.48fr] lg:px-10">
             <div data-reveal><p className="eyebrow">Agenda</p><h2 className="editorial-title mt-4">One Day.<br /><span>Endless Possibilities.</span></h2><Button asChild variant="outline" className="mt-8 rounded-full"><a href="https://et-edge.com/conferences/insurance/agenda/">View Full Agenda <ArrowRight size={14} /></a></Button></div>
-            <div className="grid gap-10 md:grid-cols-2">
-              {[agenda.slice(0, 4), agenda.slice(4)].map((column, columnIndex) => <div key={columnIndex} data-reveal><div className="agenda-day"><strong>{columnIndex === 0 ? "Morning" : "Afternoon"}</strong><span>18 December 2025</span></div><div className="agenda-column">{column.map(([time, title]) => <div key={title} className="agenda-item"><time>{time}</time><p>{title}</p></div>)}</div></div>)}
+            <div data-reveal className="agenda-accordion">
+              {agenda.map(([time, title], index) => <article key={title} className={`agenda-entry ${openAgenda === index ? "is-open" : ""}`}><h3><Button variant="ghost" onClick={() => setOpenAgenda(openAgenda === index ? -1 : index)} aria-expanded={openAgenda === index} className="agenda-trigger"><time>{time}</time><span>{title}</span><ChevronDown size={20} /></Button></h3><div className="agenda-panel" aria-hidden={openAgenda !== index}><p>{title}</p><span>18 December 2025 · Mumbai</span></div></article>)}
             </div>
           </div>
         </section>

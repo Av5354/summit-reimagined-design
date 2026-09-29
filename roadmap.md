@@ -6,5 +6,6 @@
 - [x] Verify desktop and mobile presentation, links, and current build health.
 - [x] Recompose the page from the supplied reference with angled transitions, asymmetric masks, and flowing geometry.
 - [x] Verify the reference-led redesign across desktop and mobile.
-- [ ] Match the supplied reference's exact section order, compact proportions, serif hierarchy, skyline hero, awards feature, agenda columns, and gallery collage.
-- [ ] Verify the closer reference match on desktop and mobile.
+- [x] Match the supplied reference's exact section order, compact proportions, serif hierarchy, skyline hero, awards feature, agenda columns, and gallery collage.
+- [x] Restore a rectangular reference-style hero, highlight full-width counters, stack speaker heading above its row, and convert the agenda to an accordion.
+- [ ] Verify the updated hero, counters, speakers, and agenda on desktop and mobile.
